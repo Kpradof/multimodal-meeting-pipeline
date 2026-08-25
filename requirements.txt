@@ -1,0 +1,14 @@
+# Canal de audio: transcripcion local.
+# En Apple Silicon, mlx-whisper. En otras plataformas, faster-whisper.
+mlx-whisper>=0.4.3 ; sys_platform == "darwin" and platform_machine == "arm64"
+faster-whisper>=1.0 ; sys_platform != "darwin" or platform_machine != "arm64"
+
+# Embeddings: el mismo modelo que corre dentro de Snowflake Cortex.
+sentence-transformers>=6.0
+
+# Tabla unificada y busqueda vectorial.
+duckdb>=1.5
+
+# Canal de video y generacion de respuestas.
+anthropic>=0.40
+python-dotenv>=1.0

@@ -1,0 +1,777 @@
+<title>Channels That Contradict</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap">
+
+<style>
+  :root {
+    --ground:      #F5F6F8;
+    --surface:     #FFFFFF;
+    --surface-alt: #EDEFF3;
+    --ink:         #171B21;
+    --ink-soft:    #4E5763;
+    --ink-faint:   #7A828E;
+    --rule:        #D3D8E0;
+    --ink-blue:    #2B3FBF;
+    --ink-blue-lo: #E3E6FA;
+    --signal:      #A8560A;
+    --signal-lo:   #F8EBDC;
+    --agree:       #2C6E4B;
+    --shadow:      0 1px 2px rgba(23,27,33,.06), 0 8px 24px rgba(23,27,33,.05);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:      #101319;
+      --surface:     #171B23;
+      --surface-alt: #1E232C;
+      --ink:         #E8EBF0;
+      --ink-soft:    #A8B0BD;
+      --ink-faint:   #767E8B;
+      --rule:        #2C323D;
+      --ink-blue:    #8B99F5;
+      --ink-blue-lo: #1C2140;
+      --signal:      #E0A167;
+      --signal-lo:   #2E2317;
+      --agree:       #6FBF92;
+      --shadow:      0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.3);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground:      #101319;
+    --surface:     #171B23;
+    --surface-alt: #1E232C;
+    --ink:         #E8EBF0;
+    --ink-soft:    #A8B0BD;
+    --ink-faint:   #767E8B;
+    --rule:        #2C323D;
+    --ink-blue:    #8B99F5;
+    --ink-blue-lo: #1C2140;
+    --signal:      #E0A167;
+    --signal-lo:   #2E2317;
+    --agree:       #6FBF92;
+    --shadow:      0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.3);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "IBM Plex Serif", Georgia, serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 72px 28px 96px;
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+  }
+
+  .eyebrow {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 14px;
+  }
+
+  h1 {
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.1rem, 5vw, 3.2rem);
+    line-height: 1.08;
+    letter-spacing: -.022em;
+    text-wrap: balance;
+    margin: 0 0 20px;
+  }
+
+  h2 {
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 1.42rem;
+    letter-spacing: -.012em;
+    text-wrap: balance;
+    margin: 0 0 6px;
+  }
+
+  h3 {
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: -.005em;
+    margin: 0 0 8px;
+  }
+
+  .lede {
+    font-size: 1.16rem;
+    color: var(--ink-soft);
+    max-width: 62ch;
+    margin: 0;
+  }
+
+  p { max-width: 66ch; }
+  header p.lede { max-width: 64ch; }
+
+  section > p:first-of-type { margin-top: 10px; }
+
+  figure {
+    margin: 0;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    box-shadow: var(--shadow);
+    padding: 28px 24px 20px;
+    overflow-x: auto;
+  }
+
+  figure svg { display: block; width: 100%; height: auto; min-width: 660px; }
+
+  figcaption {
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-size: .88rem;
+    color: var(--ink-soft);
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--rule);
+    max-width: 74ch;
+  }
+
+  .stage-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+
+  .stage-head .num {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink-blue);
+    letter-spacing: .08em;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+    gap: 18px;
+    margin-top: 22px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 18px 20px 20px;
+  }
+
+  .card p { font-size: .95rem; color: var(--ink-soft); margin: 0; max-width: none; }
+
+  .card .tag {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .tablewrap { overflow-x: auto; margin-top: 22px; }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 620px;
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-size: .93rem;
+  }
+
+  th {
+    text-align: left;
+    font-weight: 600;
+    font-size: 11.5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding: 0 16px 10px 0;
+    border-bottom: 1px solid var(--rule);
+    white-space: nowrap;
+  }
+
+  td {
+    padding: 12px 16px 12px 0;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    color: var(--ink-soft);
+  }
+
+  td:first-child { color: var(--ink); font-weight: 500; }
+  td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  code, .mono {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: .87em;
+  }
+
+  code {
+    background: var(--surface-alt);
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: var(--ink);
+  }
+
+  .verdict {
+    display: inline-block;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .06em;
+    padding: 3px 9px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .verdict.conflict { background: var(--signal-lo); color: var(--signal); }
+  .verdict.ok       { background: var(--surface-alt); color: var(--agree); }
+
+  .callout {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--signal);
+    border-radius: 3px;
+    padding: 20px 24px;
+    margin-top: 24px;
+  }
+  .callout p { margin: 0; }
+  .callout p + p { margin-top: 12px; }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 22px;
+  }
+
+  .stat { background: var(--surface); padding: 18px 20px; }
+
+  .stat .v {
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-size: 1.75rem;
+    font-weight: 600;
+    letter-spacing: -.02em;
+    font-variant-numeric: tabular-nums;
+    display: block;
+    line-height: 1.1;
+  }
+
+  .stat .k {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    display: block;
+    margin-top: 7px;
+  }
+
+  ul { padding-left: 20px; max-width: 66ch; }
+  li { margin-bottom: 9px; }
+  li::marker { color: var(--ink-faint); }
+
+  footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 24px;
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-size: .88rem;
+    color: var(--ink-faint);
+  }
+  footer p { max-width: 70ch; margin: 0 0 8px; }
+
+  @media (max-width: 620px) {
+    .wrap { padding: 48px 20px 72px; gap: 48px; }
+    body { font-size: 16px; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">Multimodal pipeline · AMI Meeting Corpus</p>
+    <h1>Channels that contradict</h1>
+    <p class="lede">
+      A meeting leaves three trails: what was said, what was projected, and what
+      was drawn. A pipeline that listens to only one of them has no way of
+      knowing when it is wrong. This one crosses them.
+    </p>
+  </header>
+
+  <section>
+    <div class="stage-head">
+      <span class="num">01</span>
+      <h2>The architecture</h2>
+    </div>
+    <p>
+      The first three columns are the classic pipeline: every modality becomes
+      timestamped text, and all of it lands in a single vector table. The fourth
+      column is what changes the outcome, a second consumer that is not looking
+      for information but for <em>disagreements</em>.
+    </p>
+
+    <figure>
+      <svg viewBox="0 0 1060 620" role="img"
+           aria-label="Pipeline diagram: audio, documents and video become timestamped text, are unified in a 768 dimension vector table, and feed two consumers: RAG retrieval returning cited answers, and cross-corroboration comparing the same claim across channels and flagging conflicts.">
+        <defs>
+          <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5"
+                  markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/>
+          </marker>
+          <marker id="ar-sig" viewBox="0 0 10 10" refX="9" refY="5"
+                  markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--signal)"/>
+          </marker>
+        </defs>
+
+        <g font-family="IBM Plex Mono, ui-monospace, monospace" font-size="11"
+           letter-spacing="1.1" fill="var(--ink-faint)" text-anchor="middle">
+          <text x="105" y="26">CAPTURE</text>
+          <text x="330" y="26">TO TEXT</text>
+          <text x="565" y="26">UNIFY</text>
+          <text x="875" y="26">CONSUME</text>
+        </g>
+        <line x1="30" y1="40" x2="1030" y2="40" stroke="var(--rule)" stroke-width="1"/>
+
+        <!-- ============ row 1: audio ============ -->
+        <g>
+          <rect x="30" y="72" width="150" height="86" rx="3"
+                fill="var(--surface-alt)" stroke="var(--rule)"/>
+          <text x="46" y="99" font-family="IBM Plex Sans, sans-serif" font-size="14"
+                font-weight="600" fill="var(--ink)">Audio</text>
+          <text x="46" y="121" font-family="IBM Plex Mono, monospace" font-size="11"
+                fill="var(--ink-soft)">4 meetings</text>
+          <text x="46" y="139" font-family="IBM Plex Mono, monospace" font-size="11"
+                fill="var(--ink-soft)">133 min</text>
+
+          <g color="var(--ink-soft)">
+            <line x1="180" y1="115" x2="258" y2="115" stroke="currentColor"
+                  stroke-width="1.4" marker-end="url(#ar)"/>
+          </g>
+          <text x="219" y="106" font-family="IBM Plex Mono, monospace" font-size="10.5"
+                fill="var(--ink-blue)" text-anchor="middle" font-weight="500">ASR</text>
+          <text x="219" y="133" font-family="IBM Plex Mono, monospace" font-size="10"
+                fill="var(--ink-faint)" text-anchor="middle">whisper</text>
+
+          <rect x="258" y="80" width="146" height="70" rx="3"
+                fill="var(--surface)" stroke="var(--rule)"/>
+          <text x="272" y="105" font-family="IBM Plex Sans, sans-serif" font-size="12.5"
+                fill="var(--ink)">text + second</text>
+          <text x="272" y="126" font-family="IBM Plex Mono, monospace" font-size="10.5"
+                fill="var(--ink-faint)">237 chunks</text>
+        </g>
+
+        <!-- ============ row 2: documents ============ -->
+        <g>
+          <rect x="30" y="232" width="150" height="86" rx="3"
+                fill="var(--surface-alt)" stroke="var(--rule)"/>
+          <text x="46" y="259" font-family="IBM Plex Sans, sans-serif" font-size="14"
+                font-weight="600" fill="var(--ink)">Documents</text>
+          <text x="46" y="281" font-family="IBM Plex Mono, monospace" font-size="11"
+                fill="var(--ink-soft)">decks + minutes</text>
+          <text x="46" y="299" font-family="IBM Plex Mono, monospace" font-size="11"
+                fill="var(--ink-soft)">13 files</text>
+
+          <g color="var(--ink-soft)">
+            <line x1="180" y1="275" x2="258" y2="275" stroke="currentColor"
+                  stroke-width="1.4" marker-end="url(#ar)"/>
+          </g>
+          <text x="219" y="266" font-family="IBM Plex Mono, monospace" font-size="10.5"
+                fill="var(--ink-blue)" text-anchor="middle" font-weight="500">OCR</text>
+          <text x="219" y="293" font-family="IBM Plex Mono, monospace" font-size="10"
+                fill="var(--ink-faint)" text-anchor="middle">extraction</text>
+
+          <rect x="258" y="240" width="146" height="70" rx="3"
+                fill="var(--surface)" stroke="var(--rule)"/>
+          <text x="272" y="265" font-family="IBM Plex Sans, sans-serif" font-size="12.5"
+                fill="var(--ink)">projected text</text>
+          <text x="272" y="286" font-family="IBM Plex Mono, monospace" font-size="10.5"
+                fill="var(--ink-faint)">322 lines</text>
+        </g>
+
+        <!-- ============ row 3: video ============ -->
+        <g>
+          <rect x="30" y="392" width="150" height="86" rx="3"
+                fill="var(--surface-alt)" stroke="var(--rule)"/>
+          <text x="46" y="419" font-family="IBM Plex Sans, sans-serif" font-size="14"
+                font-weight="600" fill="var(--ink)">Video</text>
+          <text x="46" y="441" font-family="IBM Plex Mono, monospace" font-size="11"
+                fill="var(--ink-soft)">whiteboard</text>
+          <text x="46" y="459" font-family="IBM Plex Mono, monospace" font-size="11"
+                fill="var(--ink-soft)">15 frames</text>
+
+          <g color="var(--ink-soft)">
+            <line x1="180" y1="435" x2="258" y2="435" stroke="currentColor"
+                  stroke-width="1.4" marker-end="url(#ar)"/>
+          </g>
+          <text x="219" y="426" font-family="IBM Plex Mono, monospace" font-size="10.5"
+                fill="var(--ink-blue)" text-anchor="middle" font-weight="500">VLM</text>
+          <text x="219" y="453" font-family="IBM Plex Mono, monospace" font-size="10"
+                fill="var(--ink-faint)" text-anchor="middle">claude vision</text>
+
+          <rect x="258" y="400" width="146" height="70" rx="3"
+                fill="var(--surface)" stroke="var(--rule)"/>
+          <text x="272" y="425" font-family="IBM Plex Sans, sans-serif" font-size="12.5"
+                fill="var(--ink)">description</text>
+          <text x="272" y="446" font-family="IBM Plex Mono, monospace" font-size="10.5"
+                fill="var(--ink-faint)">15 timed</text>
+        </g>
+
+        <!-- ============ converge into the table ============ -->
+        <g color="var(--ink-soft)">
+          <path d="M 404 115 L 452 115 L 452 275" fill="none" stroke="currentColor" stroke-width="1.4"/>
+          <path d="M 404 435 L 452 435 L 452 275" fill="none" stroke="currentColor" stroke-width="1.4"/>
+          <line x1="404" y1="275" x2="452" y2="275" stroke="currentColor" stroke-width="1.4"/>
+          <line x1="452" y1="275" x2="490" y2="275" stroke="currentColor"
+                stroke-width="1.4" marker-end="url(#ar)"/>
+        </g>
+
+        <rect x="490" y="150" width="150" height="250" rx="3"
+              fill="var(--ink-blue-lo)" stroke="var(--ink-blue)" stroke-width="1.2"/>
+        <text x="565" y="238" font-family="IBM Plex Sans, sans-serif" font-size="14.5"
+              font-weight="600" fill="var(--ink)" text-anchor="middle">One table</text>
+        <text x="565" y="262" font-family="IBM Plex Sans, sans-serif" font-size="12.5"
+              fill="var(--ink-soft)" text-anchor="middle">all three channels</text>
+        <text x="565" y="290" font-family="IBM Plex Mono, monospace" font-size="11"
+              fill="var(--ink-blue)" text-anchor="middle">768 dimensions</text>
+        <text x="565" y="309" font-family="IBM Plex Mono, monospace" font-size="11"
+              fill="var(--ink-blue)" text-anchor="middle">574 chunks</text>
+
+        <!-- ============ output 1: RAG ============ -->
+        <g color="var(--ink-soft)">
+          <path d="M 640 220 L 690 220 L 690 148" fill="none" stroke="currentColor" stroke-width="1.4"/>
+          <line x1="690" y1="148" x2="740" y2="148" stroke="currentColor"
+                stroke-width="1.4" marker-end="url(#ar)"/>
+        </g>
+        <text x="716" y="139" font-family="IBM Plex Mono, monospace" font-size="10"
+              fill="var(--ink-faint)" text-anchor="middle">top-k</text>
+
+        <rect x="740" y="104" width="290" height="90" rx="3"
+              fill="var(--surface)" stroke="var(--rule)"/>
+        <text x="758" y="130" font-family="IBM Plex Sans, sans-serif" font-size="13.5"
+              font-weight="600" fill="var(--ink)">Retrieval · RAG</text>
+        <text x="758" y="152" font-family="IBM Plex Sans, sans-serif" font-size="12"
+              fill="var(--ink-soft)">question to evidence from all 3 channels</text>
+        <text x="758" y="172" font-family="IBM Plex Mono, monospace" font-size="10.5"
+              fill="var(--ink-faint)">cited answer · token budget</text>
+
+        <!-- ============ output 2: corroboration ============ -->
+        <g color="var(--signal)">
+          <path d="M 640 330 L 690 330 L 690 400" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          <line x1="690" y1="400" x2="740" y2="400" stroke="currentColor"
+                stroke-width="1.6" marker-end="url(#ar-sig)"/>
+        </g>
+        <text x="716" y="391" font-family="IBM Plex Mono, monospace" font-size="10"
+              fill="var(--signal)" text-anchor="middle">groups</text>
+
+        <rect x="740" y="278" width="290" height="244" rx="3"
+              fill="var(--surface)" stroke="var(--signal)" stroke-width="1.4"/>
+        <text x="758" y="306" font-family="IBM Plex Sans, sans-serif" font-size="13.5"
+              font-weight="600" fill="var(--ink)">Cross-corroboration</text>
+        <text x="758" y="328" font-family="IBM Plex Sans, sans-serif" font-size="12"
+              fill="var(--ink-soft)">the same claim, in every channel</text>
+
+        <line x1="758" y1="344" x2="1012" y2="344" stroke="var(--rule)" stroke-width="1"/>
+
+        <text x="758" y="368" font-family="IBM Plex Mono, monospace" font-size="10.5"
+              fill="var(--ink-faint)">profit aim</text>
+        <text x="758" y="388" font-family="IBM Plex Mono, monospace" font-size="11"
+              fill="var(--ink)">document · 50 M euro</text>
+        <text x="758" y="407" font-family="IBM Plex Mono, monospace" font-size="11"
+              fill="var(--ink)">audio · fifteen million</text>
+        <rect x="756" y="418" width="86" height="19" rx="3" fill="var(--signal-lo)"/>
+        <text x="799" y="431" font-family="IBM Plex Mono, monospace" font-size="10.5"
+              font-weight="600" fill="var(--signal)" text-anchor="middle">CONFLICT</text>
+
+        <line x1="758" y1="452" x2="1012" y2="452" stroke="var(--rule)" stroke-width="1"/>
+
+        <text x="758" y="474" font-family="IBM Plex Mono, monospace" font-size="10.5"
+              fill="var(--ink-faint)">selling price</text>
+        <text x="758" y="494" font-family="IBM Plex Mono, monospace" font-size="11"
+              fill="var(--ink)">document and audio · 25 euro</text>
+        <rect x="756" y="503" width="86" height="19" rx="3" fill="var(--surface-alt)"/>
+        <text x="799" y="516" font-family="IBM Plex Mono, monospace" font-size="10.5"
+              font-weight="600" fill="var(--agree)" text-anchor="middle">AGREE</text>
+
+        <text x="30" y="580" font-family="IBM Plex Sans, sans-serif" font-size="12"
+              fill="var(--ink-faint)">Without the second consumer, the conflict above ships as one more fact in the answer, carrying the same confidence as the rest.</text>
+      </svg>
+      <figcaption>
+        The classic pipeline ends at the retrieval box. The second output groups
+        the same claim across channels and flags when they do not match, which is
+        the only way a misheard figure stops propagating silently.
+      </figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <div class="stage-head">
+      <span class="num">02</span>
+      <h2>Why the second output is needed</h2>
+    </div>
+    <p>
+      The AMI corpus hands every team the same finance slide. In meeting ES2008a,
+      two of its figures ended up recorded wrong, and not for the same reason.
+    </p>
+
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Channel</th>
+            <th>Profit aim</th>
+            <th>Maximum cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Projected slide</td>
+            <td class="num">50 M euro</td>
+            <td class="num">12.50 euro</td>
+          </tr>
+          <tr>
+            <td>Minutes written by the PM</td>
+            <td class="num">50 M euro</td>
+            <td class="num">12.50 euro</td>
+          </tr>
+          <tr>
+            <td>AMI manual transcript</td>
+            <td class="num"><span class="verdict conflict">fifteen million</span></td>
+            <td class="num">twelve fifty</td>
+          </tr>
+          <tr>
+            <td>AMI official answer key</td>
+            <td class="num"><span class="verdict conflict">fifteen million</span></td>
+            <td class="num">12.50 euro</td>
+          </tr>
+          <tr>
+            <td>Whisper large-v3-turbo</td>
+            <td class="num">50 million</td>
+            <td class="num"><span class="verdict conflict">1250 euro</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <p>
+        <strong>Two figures, one slide.</strong> The human annotator got the
+        first wrong. The model got the second wrong. Neither could have known:
+        both were only listening.
+      </p>
+      <p>
+        The meeting also carries its own arithmetic proof. The speaker says, and
+        both transcribe it correctly: <em>“we're selling it for twice what we'd
+        like to produce it for”</em>. Twenty five is twice 12.50. Not twice 1250.
+      </p>
+    </div>
+
+    <p style="margin-top:24px">
+      This is not a one meeting anecdote. Of the 142 hand-annotated summaries in
+      the corpus, twelve record a profit aim: <strong>ten say 50 M, two say
+      15 M</strong>, for a figure that was projected on screen in front of the
+      annotator.
+    </p>
+  </section>
+
+  <section>
+    <div class="stage-head">
+      <span class="num">03</span>
+      <h2>One pipeline, two engines</h2>
+    </div>
+    <p>
+      Every stage is an interface with two implementations. <code>local</code>
+      runs free on any machine; <code>snowflake</code> uses Cortex. The embedding
+      model is literally the same on both sides, so the vectors are comparable,
+      and that is a test rather than a README promise.
+    </p>
+
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Stage</th>
+            <th>Snowflake Cortex</th>
+            <th>Local</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Transcribe</td>
+            <td><code>AI_TRANSCRIBE</code></td>
+            <td>whisper large-v3-turbo</td>
+          </tr>
+          <tr>
+            <td>Read documents</td>
+            <td><code>AI_PARSE_DOCUMENT</code></td>
+            <td>direct extraction + Claude vision</td>
+          </tr>
+          <tr>
+            <td>Chunk</td>
+            <td><code>SPLIT_TEXT_RECURSIVE_CHARACTER</code></td>
+            <td>segment aligned chunking</td>
+          </tr>
+          <tr>
+            <td>Embed</td>
+            <td><code>AI_EMBED</code></td>
+            <td>the same <span class="mono">arctic-embed-m</span></td>
+          </tr>
+          <tr>
+            <td>Search</td>
+            <td><code>VECTOR_COSINE_SIMILARITY</code></td>
+            <td><code>array_cosine_similarity</code></td>
+          </tr>
+          <tr>
+            <td>Count tokens</td>
+            <td><code>AI_COUNT_TOKENS</code></td>
+            <td><code>messages.count_tokens()</code></td>
+          </tr>
+          <tr>
+            <td>Generate</td>
+            <td><code>CORTEX.COMPLETE</code></td>
+            <td>Claude API</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <span class="tag">Why two</span>
+        <p>
+          A repo that requires a paid Snowflake account is one almost nobody
+          runs. One that never mentions it does not demonstrate the stack. The
+          abstraction solves both.
+        </p>
+      </div>
+      <div class="card">
+        <span class="tag">What it teaches</span>
+        <p>
+          Writing the interface forces you to understand what each Cortex
+          function does, not just copy the call.
+        </p>
+      </div>
+      <div class="card">
+        <span class="tag">What is missing</span>
+        <p>
+          The Snowflake engine is not written. A trial account blocks every AI
+          function, so it could not be verified today.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="stage-head">
+      <span class="num">04</span>
+      <h2>What it cost to run</h2>
+    </div>
+    <p>
+      All of the above, end to end, over public data, on a laptop.
+    </p>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="v">17×</span>
+        <span class="k">real time, ASR</span>
+      </div>
+      <div class="stat">
+        <span class="v">133</span>
+        <span class="k">minutes transcribed</span>
+      </div>
+      <div class="stat">
+        <span class="v">574</span>
+        <span class="k">chunks indexed</span>
+      </div>
+      <div class="stat">
+        <span class="v">$0.07</span>
+        <span class="k">API cost per run</span>
+      </div>
+    </div>
+
+    <p style="margin-top:26px">
+      Transcription, embeddings, vector search and token counting cost nothing:
+      they run locally on Apple Silicon, or they are calls that are not billed.
+      The only spend was describing 15 whiteboard frames.
+    </p>
+  </section>
+
+  <section>
+    <div class="stage-head">
+      <span class="num">05</span>
+      <h2>Limits, said out loud</h2>
+    </div>
+    <ul>
+      <li>
+        <strong>The overhead camera was dropped from the index.</strong> Its 17
+        frames returned nearly the same sentence, a static room with an oval
+        table, so it spent tokens and polluted the ranking. The whiteboard does
+        add signal: the strokes evolve between frames.
+      </li>
+      <li>
+        <strong>The generated channel has to speak the language of the
+        corpus.</strong> With the vision prompt in Spanish over an English
+        corpus, the descriptions formed their own vector neighborhood: language
+        outweighed topic. A Spanish question about pricing retrieved ten of ten
+        video frames, none about pricing.
+      </li>
+      <li>
+        <strong>Scene detection fails on whiteboards.</strong> It works on slide
+        decks, which cut hard. Strokes accumulate slowly: at a threshold of 0.02,
+        ffmpeg returns zero frames. That channel needs interval sampling.
+      </li>
+      <li>
+        <strong>Document extraction leaked binary debris.</strong> Fragments
+        like <span class="mono">&lt;real&gt;774&lt;/real&gt;</span> were taking
+        real slots in the top ten. A stricter prose filter cut the document
+        channel from 621 lines to 322 and the index from 873 to 574 chunks.
+        Fewer rows, better ranking.
+      </li>
+      <li>
+        <strong>The similarity threshold belongs to the model.</strong>
+        <span class="mono">arctic-embed-m</span> rarely passes 0.4 on this
+        corpus. A 0.5 threshold returns zero rows without raising anything.
+      </li>
+      <li>
+        <strong>A meeting without documents has nothing to check itself
+        against.</strong> ES2008d publishes none, so only audio exists there.
+      </li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>
+      Data: AMI Meeting Corpus, CC BY 4.0. Every figure on this page is
+      recomputed from source by the repository's scripts; none is written from
+      memory.
+    </p>
+    <p>
+      Derived from the course <em>Building Multimodal Data Pipelines</em>
+      (DeepLearning.AI with Snowflake). The architecture is the course's;
+      reimplemented locally so it runs without a paid account.
+    </p>
+  </footer>
+
+</div>

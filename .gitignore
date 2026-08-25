@@ -1,0 +1,14 @@
+# Secretos. Nunca commitear.
+.env
+.env.*
+!.env.example
+
+# Datos descargados y salidas. Se regeneran con scripts/.
+data/
+out/
+.venv/
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
