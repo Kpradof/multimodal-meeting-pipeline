@@ -31,30 +31,33 @@ def arrow(claim, rest):
 POST = "\n\n".join([
  "I've been learning multimodal data pipelines in Snowflake (OCR, ASR, VLM), so I rebuilt it locally to check the kind of notes those tools produce (Granola, Fathom, Gemini etc) vs the deck that was up on the screen during the meeting. Then I pointed it at notes written by humans:",
 
- "In my case study, it flagged one claim out of eleven: the notes said the profit aim was fifteen million euro. The slide projected during that meeting reads \"Profit aim: 50 M euro\", and so do the minutes typed up afterwards. The handwritten transcript also reads \"fifteen million\", so the error came in through the audio and rode into the summary.",
+ "In my case study, it flagged one claim out of eleven: the notes said the profit aim was fifteen million euro. The slide projected during that meeting reads \"Profit aim: 50 M euro\", and so do the minutes typed up afterwards. The handwritten transcript also reads \"fifteen million\", so the error came in through the audio.",
 
  arrow("Three channels, one table",
-       "audio through Whisper with word-level timestamps, the projected deck parsed straight out of the .ppt, and whiteboard frames described by a vision model. All three embedded with the same model, so a single query ranks them against each other."),
+       "audio through Whisper with word-level timestamps, the projected deck parsed straight out of the .ppt, and whiteboard frames described by a vision model. One embedding model for all three, so a single query ranks them against each other."),
 
  arrow("The checker on top",
-       "it pulls the checkable claims out of a set of notes, searches all three channels for each one, and returns supported, contradicted or no evidence. Three consecutive runs returned the same eleven claims and the same single conflict."),
+       "it pulls the checkable claims out of a set of notes, searches all three channels for each one, and returns supported, contradicted or no evidence. Three runs returned the same verdicts."),
 
  arrow("Every stage has a Cortex equivalent",
-       "AI_TRANSCRIBE, AI_PARSE_DOCUMENT, AI_EMBED, VECTOR_COSINE_SIMILARITY, AI_COUNT_TOKENS, CORTEX.COMPLETE. The embedding model is the same one Cortex runs, published on HuggingFace, so the vectors are comparable."),
+       "AI_TRANSCRIBE, AI_PARSE_DOCUMENT, AI_EMBED, VECTOR_COSINE_SIMILARITY, AI_COUNT_TOKENS, CORTEX.COMPLETE. The embedding model is the same one Cortex runs, published on HuggingFace."),
 
- "The notes are AMI's own, used as ground truth in meeting summarization research. Across that corpus twelve summaries state a profit aim: ten say fifty million, two say fifteen.",
+ "The notes are AMI's own, used as ground truth in summarization research.",
 
  bold("Some lessons learned:"),
 
- arrow("No evidence is a retrieval result, not a verdict",
-       "two claims came back unmatched. That says the search missed them, not that they are false, and it is the part worth reading by hand."),
+ arrow("The generated channel has to speak the language of the corpus",
+       "I wrote the vision prompt in Spanish over English meetings, so the descriptions clustered by language, not topic. A pricing question returned ten video frames and no pricing."),
 
- arrow("For figures, the written document wins",
-       "speech turns 12.50 into \"twelve fifty\" and a transcript has to guess. A slide does not."),
+ arrow("Scene change sampling fails on whiteboards",
+       "slides cut hard between frames, but strokes accumulate slowly, so ffmpeg returned zero frames until I sampled by interval."),
+
+ arrow("The similarity threshold belongs to the model",
+       "arctic-embed rarely passes 0.4 here, so a 0.5 cutoff returns zero rows and raises nothing."),
 
  bold("Tech Stack:"),
 
- "- Whisper large v3 turbo, transcription with word-level timestamps, running locally",
+ "- Whisper large v3 turbo, word-level timestamps, running locally",
 
  "- snowflake-arctic-embed-m, embeddings, the same model Snowflake Cortex runs",
 
@@ -62,7 +65,7 @@ POST = "\n\n".join([
 
  "- Claude, claim extraction and the verdicts",
 
- "- AMI Meeting Corpus, CC BY 4.0, so anyone can clone and run the demo",
+ "- AMI Meeting Corpus, CC BY 4.0, so the demo runs for anyone",
 
  "- Repo, demo included: %s" % REPO,
 
