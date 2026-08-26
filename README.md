@@ -97,6 +97,18 @@ Three consecutive runs return the same eleven claims and the same single
 conflict. `NO_EVIDENCE` is a retrieval result, not a verdict: it means nothing
 retrieved spoke to the claim, which is worth reading by hand.
 
+### On notes a machine wrote
+
+`scripts/simulate_notetaker.py` hands a model the Whisper transcript and nothing
+else, which is the constraint a notetaker works under. Auditing the notes it
+produces returns 17 claims, 13 supported and one contradicted: the production
+cost, which the transcript had turned into 1,250 euro.
+
+Those notes state the error next to its own refutation, `1,250 euro` alongside
+`selling price is twice the production cost`, with a selling price of 25. The
+auditor flags the figure but not the internal contradiction, because it checks
+each claim against the record rather than against the other claims.
+
 ---
 
 ## Quick start

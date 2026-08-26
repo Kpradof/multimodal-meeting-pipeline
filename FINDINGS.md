@@ -143,3 +143,37 @@ annotations. The only billed call is describing whiteboard frames, at $0.07.
   its own, and the numeric conclusion has been correct every time. How it frames
   the disagreement varies between runs: it has called the 1250 both a
   transcription error and a spoken slip. The first is correct, the second is not.
+
+---
+
+## Tested on machine written notes, not only human ones
+
+A notetaker reads a transcript and writes a summary; it never sees the deck.
+`scripts/simulate_notetaker.py` reproduces that constraint exactly, handing a
+model the Whisper transcript of ES2008a and nothing else.
+
+The notes it produced inherited the transcription error, and stated it beside
+its own refutation:
+
+    Maximum production cost per unit: 1,250 euro
+    (selling price is twice the production cost)
+
+Selling price is 25. Twenty five is not twice 1,250. The notetaker wrote both
+halves without flinching, because nothing in an audio only path can check one
+against the other.
+
+Auditing those notes returns 17 claims: 13 supported, 3 with no evidence, and
+one contradicted, which is the 1,250. So the auditor works on machine written
+notes, not only on the hand written summary it was first tested against.
+
+`scripts/simulate_notetaker.py`, then `src/audit.py out/ES2008a.notetaker.txt`
+
+### The limit this exposed
+
+Claim 4 in that run, "selling price is set at twice the production cost", came
+back SUPPORTED. It is supported: the speaker says it. But held next to claim 3
+it is impossible, and the auditor did not notice, because it checks each claim
+against the record rather than against the other claims.
+
+Catching that would need a second pass over the claim set looking for internal
+contradiction. It is not built.
