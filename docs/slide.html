@@ -5,17 +5,17 @@
 
 <style>
   :root {
-    --ground:   #FFFFFF;
-    --panel:    #F2F4F7;
-    --ink:      #14181E;
-    --ink-soft: #4B5461;
-    --ink-dim:  #858D99;
-    --rule:     #D6DBE3;
-    --blue:     #2B3FBF;
-    --blue-lo:  #E6E9FB;
-    --flag:     #A8560A;
-    --flag-lo:  #FAEEE0;
-    --ok:       #2C6E4B;
+    --ground:   #0F1319;
+    --panel:    #1A1F28;
+    --ink:      #E9ECF2;
+    --ink-soft: #A5AEBC;
+    --ink-dim:  #6F7887;
+    --rule:     #2A3039;
+    --blue:     #8B99F5;
+    --blue-lo:  #1B2140;
+    --flag:     #E0A167;
+    --flag-lo:  #2E2317;
+    --ok:       #6FBF92;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -111,96 +111,96 @@
     <defs>
       <marker id="a" viewBox="0 0 10 10" refX="9" refY="5"
               markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-        <path d="M 0 0 L 10 5 L 0 10 z" fill="#4B5461"/>
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#A5AEBC"/>
       </marker>
       <marker id="f" viewBox="0 0 10 10" refX="9" refY="5"
               markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-        <path d="M 0 0 L 10 5 L 0 10 z" fill="#A8560A"/>
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#E0A167"/>
       </marker>
     </defs>
 
     <g font-family="IBM Plex Mono, monospace" font-size="15" letter-spacing="1.6"
-       fill="#858D99" text-anchor="middle">
+       fill="#6F7887" text-anchor="middle">
       <text x="115" y="18">INPUT</text>
       <text x="400" y="18">EXTRACT</text>
       <text x="700" y="18">SEARCH</text>
       <text x="1130" y="18">VERDICT</text>
     </g>
-    <line x1="0" y1="36" x2="1456" y2="36" stroke="#D6DBE3" stroke-width="1.5"/>
+    <line x1="0" y1="36" x2="1456" y2="36" stroke="#2A3039" stroke-width="1.5"/>
 
     <!-- input: someone else's notes -->
-    <rect x="0" y="150" width="230" height="150" rx="4" fill="#F2F4F7" stroke="#D6DBE3" stroke-width="1.5"/>
-    <text x="24" y="192" font-size="23" font-weight="600" fill="#14181E">Notes</text>
-    <text x="24" y="222" font-size="16" fill="#4B5461">written by someone else</text>
-    <text x="24" y="254" font-family="IBM Plex Mono, monospace" font-size="14" fill="#858D99">AMI hand written</text>
-    <text x="24" y="276" font-family="IBM Plex Mono, monospace" font-size="14" fill="#858D99">summary, ES2008a</text>
+    <rect x="0" y="150" width="230" height="150" rx="4" fill="#1A1F28" stroke="#2A3039" stroke-width="1.5"/>
+    <text x="24" y="192" font-size="23" font-weight="600" fill="#E9ECF2">Notes</text>
+    <text x="24" y="222" font-size="16" fill="#A5AEBC">written by someone else</text>
+    <text x="24" y="254" font-family="IBM Plex Mono, monospace" font-size="14" fill="#6F7887">AMI hand written</text>
+    <text x="24" y="276" font-family="IBM Plex Mono, monospace" font-size="14" fill="#6F7887">summary, ES2008a</text>
 
-    <line x1="230" y1="225" x2="306" y2="225" stroke="#4B5461" stroke-width="2" marker-end="url(#a)"/>
+    <line x1="230" y1="225" x2="306" y2="225" stroke="#A5AEBC" stroke-width="2" marker-end="url(#a)"/>
 
     <!-- claims -->
-    <rect x="306" y="150" width="190" height="150" rx="4" fill="#FFFFFF" stroke="#D6DBE3" stroke-width="1.5"/>
-    <text x="401" y="205" font-size="44" font-weight="700" fill="#2B3FBF" text-anchor="middle">11</text>
-    <text x="401" y="236" font-size="17" fill="#14181E" text-anchor="middle">checkable</text>
-    <text x="401" y="259" font-size="17" fill="#14181E" text-anchor="middle">claims</text>
-    <text x="401" y="286" font-family="IBM Plex Mono, monospace" font-size="13" fill="#858D99" text-anchor="middle">figures, decisions</text>
+    <rect x="306" y="150" width="190" height="150" rx="4" fill="#161B23" stroke="#2A3039" stroke-width="1.5"/>
+    <text x="401" y="205" font-size="44" font-weight="700" fill="#8B99F5" text-anchor="middle">11</text>
+    <text x="401" y="236" font-size="17" fill="#E9ECF2" text-anchor="middle">checkable</text>
+    <text x="401" y="259" font-size="17" fill="#E9ECF2" text-anchor="middle">claims</text>
+    <text x="401" y="286" font-family="IBM Plex Mono, monospace" font-size="13" fill="#6F7887" text-anchor="middle">figures, decisions</text>
 
-    <line x1="496" y1="225" x2="572" y2="225" stroke="#4B5461" stroke-width="2" marker-end="url(#a)"/>
+    <line x1="496" y1="225" x2="572" y2="225" stroke="#A5AEBC" stroke-width="2" marker-end="url(#a)"/>
 
     <!-- the meeting record, three channels -->
-    <rect x="572" y="90" width="256" height="270" rx="4" fill="#E6E9FB" stroke="#2B3FBF" stroke-width="1.8"/>
-    <text x="700" y="128" font-size="21" font-weight="600" fill="#14181E" text-anchor="middle">The record</text>
+    <rect x="572" y="90" width="256" height="270" rx="4" fill="#1B2140" stroke="#8B99F5" stroke-width="1.8"/>
+    <text x="700" y="128" font-size="21" font-weight="600" fill="#E9ECF2" text-anchor="middle">The record</text>
 
-    <rect x="596" y="152" width="208" height="56" rx="3" fill="#FFFFFF" stroke="#C3CAF2"/>
-    <text x="614" y="178" font-size="16" fill="#14181E">audio</text>
-    <text x="786" y="178" font-family="IBM Plex Mono, monospace" font-size="15" fill="#2B3FBF" text-anchor="end">237</text>
-    <text x="614" y="197" font-family="IBM Plex Mono, monospace" font-size="12.5" fill="#858D99">what was said</text>
+    <rect x="596" y="152" width="208" height="56" rx="3" fill="#161B23" stroke="#39416E"/>
+    <text x="614" y="178" font-size="16" fill="#E9ECF2">audio</text>
+    <text x="786" y="178" font-family="IBM Plex Mono, monospace" font-size="15" fill="#8B99F5" text-anchor="end">237</text>
+    <text x="614" y="197" font-family="IBM Plex Mono, monospace" font-size="12.5" fill="#6F7887">what was said</text>
 
-    <rect x="596" y="218" width="208" height="56" rx="3" fill="#FFFFFF" stroke="#C3CAF2"/>
-    <text x="614" y="244" font-size="16" fill="#14181E">documents</text>
-    <text x="786" y="244" font-family="IBM Plex Mono, monospace" font-size="15" fill="#2B3FBF" text-anchor="end">322</text>
-    <text x="614" y="263" font-family="IBM Plex Mono, monospace" font-size="12.5" fill="#858D99">what was on screen</text>
+    <rect x="596" y="218" width="208" height="56" rx="3" fill="#161B23" stroke="#39416E"/>
+    <text x="614" y="244" font-size="16" fill="#E9ECF2">documents</text>
+    <text x="786" y="244" font-family="IBM Plex Mono, monospace" font-size="15" fill="#8B99F5" text-anchor="end">322</text>
+    <text x="614" y="263" font-family="IBM Plex Mono, monospace" font-size="12.5" fill="#6F7887">what was on screen</text>
 
-    <rect x="596" y="284" width="208" height="56" rx="3" fill="#FFFFFF" stroke="#C3CAF2"/>
-    <text x="614" y="310" font-size="16" fill="#14181E">whiteboard</text>
-    <text x="786" y="310" font-family="IBM Plex Mono, monospace" font-size="15" fill="#2B3FBF" text-anchor="end">15</text>
-    <text x="614" y="329" font-family="IBM Plex Mono, monospace" font-size="12.5" fill="#858D99">what was drawn</text>
+    <rect x="596" y="284" width="208" height="56" rx="3" fill="#161B23" stroke="#39416E"/>
+    <text x="614" y="310" font-size="16" fill="#E9ECF2">whiteboard</text>
+    <text x="786" y="310" font-family="IBM Plex Mono, monospace" font-size="15" fill="#8B99F5" text-anchor="end">15</text>
+    <text x="614" y="329" font-family="IBM Plex Mono, monospace" font-size="12.5" fill="#6F7887">what was drawn</text>
 
-    <line x1="828" y1="225" x2="904" y2="225" stroke="#4B5461" stroke-width="2" marker-end="url(#a)"/>
-    <text x="866" y="212" font-family="IBM Plex Mono, monospace" font-size="13" fill="#858D99" text-anchor="middle">cosine</text>
+    <line x1="828" y1="225" x2="904" y2="225" stroke="#A5AEBC" stroke-width="2" marker-end="url(#a)"/>
+    <text x="866" y="212" font-family="IBM Plex Mono, monospace" font-size="13" fill="#6F7887" text-anchor="middle">cosine</text>
 
     <!-- verdicts -->
-    <rect x="904" y="90" width="180" height="80" rx="4" fill="#FFFFFF" stroke="#D6DBE3" stroke-width="1.5"/>
-    <text x="928" y="128" font-size="30" font-weight="700" fill="#2C6E4B">8</text>
-    <text x="972" y="128" font-size="17" fill="#14181E">supported</text>
-    <text x="928" y="152" font-family="IBM Plex Mono, monospace" font-size="13" fill="#858D99">record agrees</text>
+    <rect x="904" y="90" width="180" height="80" rx="4" fill="#161B23" stroke="#2A3039" stroke-width="1.5"/>
+    <text x="928" y="128" font-size="30" font-weight="700" fill="#6FBF92">8</text>
+    <text x="972" y="128" font-size="17" fill="#E9ECF2">supported</text>
+    <text x="928" y="152" font-family="IBM Plex Mono, monospace" font-size="13" fill="#6F7887">record agrees</text>
 
-    <rect x="904" y="184" width="180" height="80" rx="4" fill="#FAEEE0" stroke="#A8560A" stroke-width="2"/>
-    <text x="928" y="222" font-size="30" font-weight="700" fill="#A8560A">1</text>
-    <text x="972" y="222" font-size="17" fill="#14181E">contradicted</text>
-    <text x="928" y="246" font-family="IBM Plex Mono, monospace" font-size="13" fill="#A8560A">record disagrees</text>
+    <rect x="904" y="184" width="180" height="80" rx="4" fill="#2E2317" stroke="#E0A167" stroke-width="2"/>
+    <text x="928" y="222" font-size="30" font-weight="700" fill="#E0A167">1</text>
+    <text x="972" y="222" font-size="17" fill="#E9ECF2">contradicted</text>
+    <text x="928" y="246" font-family="IBM Plex Mono, monospace" font-size="13" fill="#E0A167">record disagrees</text>
 
-    <rect x="904" y="278" width="180" height="80" rx="4" fill="#FFFFFF" stroke="#D6DBE3" stroke-width="1.5"/>
-    <text x="928" y="316" font-size="30" font-weight="700" fill="#858D99">2</text>
-    <text x="972" y="316" font-size="17" fill="#14181E">no evidence</text>
-    <text x="928" y="340" font-family="IBM Plex Mono, monospace" font-size="13" fill="#858D99">search found none</text>
+    <rect x="904" y="278" width="180" height="80" rx="4" fill="#161B23" stroke="#2A3039" stroke-width="1.5"/>
+    <text x="928" y="316" font-size="30" font-weight="700" fill="#6F7887">2</text>
+    <text x="972" y="316" font-size="17" fill="#E9ECF2">no evidence</text>
+    <text x="928" y="340" font-family="IBM Plex Mono, monospace" font-size="13" fill="#6F7887">search found none</text>
 
-    <line x1="1084" y1="224" x2="1148" y2="224" stroke="#A8560A" stroke-width="2" marker-end="url(#f)"/>
+    <line x1="1084" y1="224" x2="1148" y2="224" stroke="#E0A167" stroke-width="2" marker-end="url(#f)"/>
 
     <!-- the one flagged claim -->
-    <rect x="1148" y="120" width="308" height="210" rx="4" fill="#FFFFFF" stroke="#A8560A" stroke-width="2"/>
-    <text x="1172" y="156" font-family="IBM Plex Mono, monospace" font-size="13" fill="#A8560A" letter-spacing="1.2">THE FLAGGED CLAIM</text>
-    <line x1="1172" y1="170" x2="1432" y2="170" stroke="#D6DBE3" stroke-width="1.5"/>
+    <rect x="1148" y="120" width="308" height="210" rx="4" fill="#161B23" stroke="#E0A167" stroke-width="2"/>
+    <text x="1172" y="156" font-family="IBM Plex Mono, monospace" font-size="13" fill="#E0A167" letter-spacing="1.2">THE FLAGGED CLAIM</text>
+    <line x1="1172" y1="170" x2="1432" y2="170" stroke="#2A3039" stroke-width="1.5"/>
 
-    <text x="1172" y="196" font-family="IBM Plex Mono, monospace" font-size="12.5" fill="#858D99">notes say</text>
-    <text x="1172" y="219" font-size="18" fill="#14181E">profit aim: fifteen million</text>
+    <text x="1172" y="196" font-family="IBM Plex Mono, monospace" font-size="12.5" fill="#6F7887">notes say</text>
+    <text x="1172" y="219" font-size="18" fill="#E9ECF2">profit aim: fifteen million</text>
 
-    <text x="1172" y="255" font-family="IBM Plex Mono, monospace" font-size="12.5" fill="#858D99">the projected slide reads</text>
-    <text x="1172" y="278" font-size="18" font-weight="600" fill="#A8560A">Profit aim: 50 M euro</text>
+    <text x="1172" y="255" font-family="IBM Plex Mono, monospace" font-size="12.5" fill="#6F7887">the projected slide reads</text>
+    <text x="1172" y="278" font-size="18" font-weight="600" fill="#E0A167">Profit aim: 50 M euro</text>
 
-    <text x="1172" y="310" font-family="IBM Plex Mono, monospace" font-size="12.5" fill="#858D99">so do the minutes written afterwards</text>
+    <text x="1172" y="310" font-family="IBM Plex Mono, monospace" font-size="12.5" fill="#6F7887">so do the minutes written afterwards</text>
 
-    <text x="0" y="428" font-size="17" fill="#4B5461">Three consecutive runs return the same eleven claims and the same single conflict.</text>
-    <text x="0" y="458" font-size="17" fill="#858D99">The notes are AMI's own, used as ground truth in meeting summarization research, published years before this repo.</text>
+    <text x="0" y="428" font-size="17" fill="#A5AEBC">Three consecutive runs return the same eleven claims and the same single conflict.</text>
+    <text x="0" y="458" font-size="17" fill="#6F7887">The notes are AMI's own, used as ground truth in meeting summarization research, published years before this repo.</text>
   </svg>
 
   <div class="foot">
