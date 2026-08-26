@@ -8,7 +8,8 @@ every fact came from.
 It runs locally and free. The demo uses public data, so you can clone it and run
 it without credentials for anything.
 
-Architecture and full write-up: `docs/architecture.html`
+Architecture write-up: `docs/architecture.html`
+Slides: `docs/slide-audit.png` (the auditor) and `docs/slide-pipeline.png` (the ingest pipeline)
 
 ---
 

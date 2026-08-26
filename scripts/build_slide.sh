@@ -1,12 +1,25 @@
 #!/bin/bash
-# Rasterise docs/slide.html to a PNG for LinkedIn.
-# The HTML is the source. Never edit the PNG.
+# Rasterise a slide to PNG for LinkedIn. The HTML is the source; never edit the PNG.
+#
+#   scripts/build_slide.sh audit       the notes auditor  (dark)
+#   scripts/build_slide.sh pipeline    the ingest pipeline (light)
+#   scripts/build_slide.sh             both
 set -e
 cd "$(dirname "$0")/.."
 CHROME="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-"$CHROME" --headless --disable-gpu --hide-scrollbars \
-  --force-device-scale-factor=2 --window-size=1600,772 \
-  --virtual-time-budget=6000 \
-  --screenshot="$(pwd)/docs/slide.png" \
-  "file://$(pwd)/docs/slide.html"
-echo "written: docs/slide.png  ($(sips -g pixelWidth -g pixelHeight docs/slide.png | tail -2 | tr -d ' \n'))"
+
+render() {
+  local name=$1 height=$2
+  "$CHROME" --headless --disable-gpu --hide-scrollbars \
+    --force-device-scale-factor=2 --window-size=1600,"$height" \
+    --virtual-time-budget=6000 \
+    --screenshot="$(pwd)/docs/slide-$name.png" \
+    "file://$(pwd)/docs/slide-$name.html" 2>/dev/null
+  echo "written: docs/slide-$name.png  ($(sips -g pixelWidth -g pixelHeight "docs/slide-$name.png" | tail -2 | tr -d ' \n'))"
+}
+
+case "${1:-all}" in
+  audit)    render audit 772 ;;
+  pipeline) render pipeline 782 ;;
+  *)        render audit 772; render pipeline 782 ;;
+esac
