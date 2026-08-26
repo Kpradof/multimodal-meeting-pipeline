@@ -326,15 +326,16 @@
       <h2>The architecture</h2>
     </div>
     <p>
-      The first three columns are the classic pipeline: every modality becomes
-      timestamped text, and all of it lands in a single vector table. The fourth
+      The first three columns are the classic pipeline: every modality becomes text
+      that lands in a single vector table, with audio and video carrying
+      timestamps and the documents carrying none. The fourth
       column is what changes the outcome, a second consumer that is not looking
       for information but for <em>disagreements</em>.
     </p>
 
     <figure>
       <svg viewBox="0 0 1060 620" role="img"
-           aria-label="Pipeline diagram: audio, documents and video become timestamped text, are unified in a 768 dimension vector table, and feed two consumers: RAG retrieval returning cited answers, and cross-corroboration comparing the same claim across channels and flagging conflicts.">
+           aria-label="Pipeline diagram: audio, documents and video become text, timestamped where the channel has a clock, unified in a 768 dimension vector table, and feed two consumers: RAG retrieval returning cited answers, and cross-corroboration comparing the same claim across channels and flagging conflicts.">
         <defs>
           <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5"
                   markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -399,7 +400,7 @@
                   stroke-width="1.4" marker-end="url(#ar)"/>
           </g>
           <text x="219" y="266" font-family="IBM Plex Mono, monospace" font-size="10.5"
-                fill="var(--ink-blue)" text-anchor="middle" font-weight="500">OCR</text>
+                fill="var(--ink-blue)" text-anchor="middle" font-weight="500">PARSE</text>
           <text x="219" y="293" font-family="IBM Plex Mono, monospace" font-size="10"
                 fill="var(--ink-faint)" text-anchor="middle">extraction</text>
 
