@@ -29,41 +29,43 @@ def arrow(claim, rest):
 
 
 POST = "\n\n".join([
- "I've been learning multimodal data pipelines in Snowflake (OCR, ASR, VLM), so I rebuilt it locally to check the kind of notes those tools produce (Granola, Fathom, Gemini) vs the deck that was up on the screen during the meeting. Then I ran it on notes written by humans:",
+ "I've been learning multimodal data pipelines in Snowflake (OCR, ASR, VLM), so I rebuilt it locally to check the kind of notes those tools produce (Granola, Fathom, Gemini) vs the deck that was up on the screen during the meeting. Then I ran it on notes a machine wrote, and on notes humans wrote:",
 
- "In my case study, notes used as ground truth in research, it flagged one claim out of eleven: the notes said the profit aim was fifteen million euro. The slide reads \"Profit aim: 50 M euro\", and so do the minutes typed up afterwards. The handwritten transcript also reads \"fifteen million\": the error came in through the audio.",
+ "In my case study, notes used as ground truth in research, it flagged one of eleven claims: the profit aim was written as fifteen million euro. The slide reads \"Profit aim: 50 M euro\", and so do the minutes typed up afterwards. The handwritten transcript also reads \"fifteen million\", so the error came in through the audio.",
 
  arrow("Three channels, one table",
-       "speech becomes text with Whisper, the deck is read straight out of the .ppt, and whiteboard frames are described by a model that can see them. One embedding model turns all three into vectors, so one search covers what was said, shown and drawn."),
+       "speech becomes text with Whisper, the deck is read out of the .ppt, and the whiteboard is described by a model that can see it. One embedding model turns all three into vectors, so one search covers what was said, shown and drawn."),
 
  arrow("The checker on top",
-       "it pulls the claims that can be checked out of a set of notes, looks for each one across the three channels, and answers supported, contradicted, or no evidence. Three runs agreed."),
+       "it pulls the checkable claims out of a set of notes, looks for each one across the three channels, and answers supported, contradicted, or no evidence. Three runs agreed."),
 
  arrow("Every stage has a Cortex equivalent",
-       "AI_TRANSCRIBE for speech, AI_PARSE_DOCUMENT for the deck, AI_EMBED for the vectors, plus token counting and generation. The embedding model is the same one Cortex runs, on HuggingFace."),
+       "AI_TRANSCRIBE for speech, AI_PARSE_DOCUMENT for the deck, AI_EMBED for the vectors, plus token counting and generation. The embedding model is the one Cortex runs, on HuggingFace."),
+
+ "On notes a model wrote from the audio alone, it caught the same kind of miss: 1,250 euro for a cost the deck puts at 12.50.",
 
  bold("Some lessons learned:"),
 
  arrow("The generated channel has to speak the language of the corpus",
-       "I wrote the vision prompt in Spanish over English meetings. The descriptions grouped with each other rather than with the topic, so a question about pricing returned ten video frames and no pricing."),
+       "I wrote the vision prompt in Spanish over English meetings, so the descriptions grouped by language rather than topic. A pricing question returned ten video frames and no pricing."),
 
  arrow("Scene change sampling fails on whiteboards",
        "it grabs a frame when the picture changes a lot, which works for slides. Strokes appear slowly, so ffmpeg returned zero frames until I sampled on a timer."),
 
  arrow("The similarity threshold belongs to the model",
-       "it decides how close a match has to be before it counts. arctic-embed rarely passes 0.4 here, so a 0.5 cutoff returns nothing and raises no error."),
+       "it decides how close a match counts. arctic-embed rarely passes 0.4 here, so a 0.5 cutoff returns nothing, silently."),
 
  bold("Tech Stack:"),
 
- "- Whisper large v3 turbo, word-level timestamps, local",
+ "- Whisper large v3 turbo, running local",
 
- "- snowflake-arctic-embed-m, the same embedding model Cortex runs",
+ "- snowflake-arctic-embed-m, the embedding model Cortex runs",
 
- "- DuckDB, one table for all three channels",
+ "- DuckDB, the one table",
 
  "- Claude, claim extraction and verdicts",
 
- "- AMI Meeting Corpus, CC BY 4.0, the demo runs for anyone",
+ "- AMI Meeting Corpus, CC BY 4.0",
 
  "- Repo, demo included: %s" % REPO,
 
