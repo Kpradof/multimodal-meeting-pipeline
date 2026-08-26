@@ -10,6 +10,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent.parent
 OUT = HERE / "out/post_final.txt"
+REPO = "github.com/Kpradof/multimodal-meeting-pipeline"
 
 
 def bold(t):
@@ -28,12 +29,12 @@ def arrow(claim, rest):
 
 
 POST = "\n\n".join([
- "I've been learning multimodal data pipelines in Snowflake, ASR and OCR, so I rebuilt the whole thing to run locally and see how a meeting breaks down into tasks you can RAG. Here is how it works:",
+ "I've been learning multimodal data pipelines in Snowflake, ASR and OCR, so I rebuilt the course locally to see how a meeting breaks down into text you can actually query, (also created a repo, link at the end of the post). Here is how it works:",
 
- "A meeting leaves three trails: what people said, what was on the screen, and what someone drew on the board. Most tools only read the first one. All three end up as timestamped text in a single table.",
+ "A meeting has 3 components: what people said, what was on the screen, and what someone drew on the board. Most tools only read the first one. All three end up as text in a single table, audio and video carrying timestamps.",
 
  arrow("Audio to text",
-       "Whisper runs locally with word level timestamps. 133 minutes of meetings at 12.5x real time on a laptop, no GPU rental."),
+       "Whisper runs locally with word-level timestamps. 2.2 hours of meetings transcribed in under 11 minutes, and confidential audio never leaves the laptop."),
 
  arrow("Documents to text",
        "the decks and minutes that were projected, mapped to the meeting where each one was shown."),
@@ -45,14 +46,14 @@ POST = "\n\n".join([
        "all three channels get embedded with the same model and land in one DuckDB table, so a single query ranks audio, documents and video against each other."),
 
  arrow("Answers you can audit",
-       "a token budget for the context, and an answer that cites the second of audio or the document behind every claim."),
+       "a token budget for the context, and answers that carry the audio timestamp or the document they came from."),
 
- "Every stage has an exact Snowflake Cortex equivalent, and the embedding model is literally the same one Cortex runs, published on HuggingFace.",
+ "Every stage has an exact Snowflake Cortex equivalent, and the embedding model is the same one Cortex runs, from HuggingFace.",
 
  bold("Some lessons learned:"),
 
  arrow("The generated channel has to speak the language of the corpus",
-       "I wrote the vision prompt in Spanish over English meetings, so the descriptions clustered by language instead of topic, and a pricing question returned ten video frames and zero pricing."),
+       "I wrote the vision prompt in Spanish over English meetings, so the descriptions clustered by language instead of topic, and a pricing question returned ten video frames and no pricing."),
 
  arrow("Scene change sampling fails on whiteboards",
        "slides cut hard between frames, but strokes accumulate slowly, so ffmpeg returned zero frames until I sampled by interval instead."),
@@ -60,14 +61,19 @@ POST = "\n\n".join([
  arrow("The similarity threshold belongs to the model",
        "arctic-embed rarely passes 0.4 on this corpus, so a 0.5 cutoff returns zero rows and raises nothing at all."),
 
- bold("Stack:") + "\n"
- "Whisper large v3 turbo, transcription with word level timestamps, running locally\n"
- "snowflake-arctic-embed-m, embeddings, the same model Snowflake Cortex runs\n"
- "DuckDB, one table holding audio, documents and video side by side\n"
- "Claude, frame descriptions and the cited answers\n"
- "AMI Meeting Corpus, CC BY 4.0, so anyone can clone the repo and run the demo",
+ bold("Tech Stack:"),
 
- "Repo, demo meeting included: github.com/Kpradof/multimodal-meeting-pipeline",
+ "- Whisper large v3 turbo, transcription with word-level timestamps",
+
+ "- snowflake-arctic-embed-m, embeddings, the same model Snowflake Cortex runs",
+
+ "- DuckDB, one table holding audio, documents and video",
+
+ "- Claude, frame descriptions and the cited answers",
+
+ "- AMI Meeting Corpus, CC BY 4.0, so anyone can clone and run the demo",
+
+ "- Repo, demo meeting included: %s" % REPO,
 
  "#MultimodalAI #DataEngineering #AIEngineering",
 ])

@@ -66,6 +66,37 @@ every time; the attribution has not.
 
 ---
 
+## Auditing notes a tool wrote
+
+The demo input is AMI's own hand written summary of ES2008a, produced by
+annotators who listened to the recording. It was written years before this repo
+and nothing in it was arranged for this test.
+
+    $ .venv/bin/python src/audit.py --demo
+
+    Checkable claims found: 11
+
+     1. [ok         ] The remote will be sold for 25 Euro.
+     2. [CONFLICT   ] The profit aim is fifteen million Euro.
+          record: The slide states the profit aim is 50 million euro.
+          source: [SLIDE ES2008a document] Profit aim: 50 M euro
+     3. [ok         ] The maximum production cost for the remote is 12.50 Euro.
+     ...
+
+     SUPPORTED      8
+     CONTRADICTED   1
+     NO_EVIDENCE    2
+
+One claim flagged out of eleven, and it is the one that is wrong. The projected
+slide reads `Profit aim: 50 M euro`, and so do the minutes the project manager
+wrote herself. The annotators only had the audio.
+
+Three consecutive runs return the same eleven claims and the same single
+conflict. `NO_EVIDENCE` is a retrieval result, not a verdict: it means nothing
+retrieved spoke to the claim, which is worth reading by hand.
+
+---
+
 ## Quick start
 
 Requirements: Python 3.11+, `ffmpeg`, and an `ANTHROPIC_API_KEY` only for the
@@ -115,6 +146,12 @@ Retrieval, token counting, and context assembly inside a budget.
 
 `src/ask.py` — asking
 The CLI. Interactive, or with the question as an argument.
+
+`src/audit.py` — auditing someone else's notes
+Takes a summary written by a notetaker, pulls out the checkable claims, and
+looks for each one across the three channels. A notetaker writes from what it
+heard, so it cannot tell you when it misheard. The documents that were on screen
+are where that becomes visible.
 
 `scripts/verify_claims.py` — the guard
 Recomputes every published figure from source. It has already caught a real
