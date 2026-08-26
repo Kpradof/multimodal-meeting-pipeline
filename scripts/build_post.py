@@ -29,51 +29,47 @@ def arrow(claim, rest):
 
 
 POST = "\n\n".join([
- "I've been learning multimodal data pipelines in Snowflake, ASR and OCR, so I rebuilt the course locally to see how a meeting breaks down into text you can actually query, (also created a repo, link at the end of the post). Here is how it works:",
+ "I've been learning multimodal data pipelines in Snowflake, so I built something that checks meeting notes against what was actually on the screen. Then I pointed it at notes written by humans:",
 
- "A meeting has 3 components: what people said, what was on the screen, and what someone drew on the board. Most tools only read the first one. All three end up as text in a single table, audio and video carrying timestamps.",
+ "It flagged one claim out of eleven.",
 
- arrow("Audio to text",
-       "Whisper runs locally with word-level timestamps. 2.2 hours of meetings transcribed in under 11 minutes, and confidential audio never leaves the laptop."),
+ "The notes said the profit aim was fifteen million euro. The slide projected during that meeting reads \"Profit aim: 50 M euro\", and so do the minutes the project manager typed up afterwards. The hand written transcript of that meeting also reads \"fifteen million\", so the error came in through the audio and rode into the summary.",
 
- arrow("Documents to text",
-       "the decks and minutes that were projected, mapped to the meeting where each one was shown."),
+ arrow("The tool was not told where to look",
+       "it pulls the checkable claims out of the notes, searches audio, documents and whiteboard frames for each one, and returns supported, contradicted or no evidence. Three consecutive runs returned the same eleven claims and the same single conflict."),
 
- arrow("Video to text",
-       "ffmpeg samples frames, and a vision model describes them and transcribes any legible text on the board."),
+ arrow("The machine broke a different number than the human did",
+       "on that same slide, Whisper turned a production cost of 12.50 euro into 1250, and got the profit aim right. The human record did the opposite. Neither error is visible from inside the audio, only against the document."),
 
- arrow("One table, not three",
-       "all three channels get embedded with the same model and land in one DuckDB table, so a single query ranks audio, documents and video against each other."),
+ arrow("It is not one meeting",
+       "of the 142 hand annotated summaries in this corpus, twelve state a profit aim. Ten say fifty million. Two say fifteen."),
 
- arrow("Answers you can audit",
-       "a token budget for the context, and answers that carry the audio timestamp or the document they came from."),
-
- "Every stage has an exact Snowflake Cortex equivalent, and the embedding model is the same one Cortex runs, from HuggingFace.",
+ "The notes I audited are AMI's own, written by trained annotators and used as ground truth in meeting summarization research. They were published years before this repo.",
 
  bold("Some lessons learned:"),
 
- arrow("The generated channel has to speak the language of the corpus",
-       "I wrote the vision prompt in Spanish over English meetings, so the descriptions clustered by language instead of topic, and a pricing question returned ten video frames and no pricing."),
+ arrow("A summary is only as right as the channel it was written from",
+       "nothing inside an audio only pipeline can report that it misheard."),
 
- arrow("Scene change sampling fails on whiteboards",
-       "slides cut hard between frames, but strokes accumulate slowly, so ffmpeg returned zero frames until I sampled by interval instead."),
+ arrow("No evidence is a retrieval result, not a verdict",
+       "two claims came back unmatched. That says the search missed them, not that they are false, and it is the part worth reading by hand."),
 
- arrow("The similarity threshold belongs to the model",
-       "arctic-embed rarely passes 0.4 on this corpus, so a 0.5 cutoff returns zero rows and raises nothing at all."),
+ arrow("For figures, the written document wins",
+       "speech turns 12.50 into \"twelve fifty\" and a transcript has to guess. A slide does not."),
 
  bold("Tech Stack:"),
 
- "- Whisper large v3 turbo, transcription with word-level timestamps",
+ "- Whisper large v3 turbo, transcription with word-level timestamps, running locally",
 
  "- snowflake-arctic-embed-m, embeddings, the same model Snowflake Cortex runs",
 
  "- DuckDB, one table holding audio, documents and video",
 
- "- Claude, frame descriptions and the cited answers",
+ "- Claude, claim extraction and the verdicts",
 
  "- AMI Meeting Corpus, CC BY 4.0, so anyone can clone and run the demo",
 
- "- Repo, demo meeting included: %s" % REPO,
+ "- Repo, demo included: %s" % REPO,
 
  "#MultimodalAI #DataEngineering #AIEngineering",
 ])
