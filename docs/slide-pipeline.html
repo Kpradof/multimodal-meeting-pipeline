@@ -5,14 +5,14 @@
 
 <style>
   :root {
-    --ground:   #FFFFFF;
-    --panel:    #F2F4F7;
-    --ink:      #14181E;
-    --ink-soft: #4B5461;
-    --ink-dim:  #858D99;
-    --rule:     #D6DBE3;
-    --blue:     #2B3FBF;
-    --blue-lo:  #E6E9FB;
+    --ground:   #0F1319;
+    --panel:    #1A1F28;
+    --ink:      #E9ECF2;
+    --ink-soft: #A5AEBC;
+    --ink-dim:  #6F7887;
+    --rule:     #2A3039;
+    --blue:     #8B99F5;
+    --blue-lo:  #1B2140;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -93,8 +93,8 @@
     <div>
       <h1>Multimodal meeting pipeline</h1>
       <p class="sub">
-        A meeting leaves three trails. Each becomes text with timestamps, they
-        share one table, and answers cite where every fact came from.
+        A meeting leaves three trails. Each becomes text in one shared table,
+        audio and video carrying timestamps, and answers name their source.
       </p>
     </div>
     <div class="badge">
@@ -108,92 +108,92 @@
     <defs>
       <marker id="a" viewBox="0 0 10 10" refX="9" refY="5"
               markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-        <path d="M 0 0 L 10 5 L 0 10 z" fill="#4B5461"/>
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#A5AEBC"/>
       </marker>
       <marker id="b" viewBox="0 0 10 10" refX="9" refY="5"
               markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-        <path d="M 0 0 L 10 5 L 0 10 z" fill="#2B3FBF"/>
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#8B99F5"/>
       </marker>
     </defs>
 
     <g font-family="IBM Plex Mono, monospace" font-size="15" letter-spacing="1.6"
-       fill="#858D99" text-anchor="middle">
+       fill="#6F7887" text-anchor="middle">
       <text x="128" y="18">CAPTURE</text>
       <text x="470" y="18">TO TEXT</text>
       <text x="820" y="18">UNIFY</text>
       <text x="1210" y="18">ASK</text>
     </g>
-    <line x1="0" y1="36" x2="1456" y2="36" stroke="#D6DBE3" stroke-width="1.5"/>
+    <line x1="0" y1="36" x2="1456" y2="36" stroke="#2A3039" stroke-width="1.5"/>
 
     <!-- audio -->
-    <rect x="0" y="72" width="256" height="108" rx="4" fill="#F2F4F7" stroke="#D6DBE3" stroke-width="1.5"/>
-    <text x="26" y="112" font-size="25" font-weight="600" fill="#14181E">Audio</text>
-    <text x="26" y="145" font-family="IBM Plex Mono, monospace" font-size="16" fill="#4B5461">4 meetings</text>
-    <text x="26" y="168" font-family="IBM Plex Mono, monospace" font-size="16" fill="#4B5461">133 minutes</text>
+    <rect x="0" y="72" width="256" height="108" rx="4" fill="#1A1F28" stroke="#2A3039" stroke-width="1.5"/>
+    <text x="26" y="112" font-size="25" font-weight="600" fill="#E9ECF2">Audio</text>
+    <text x="26" y="145" font-family="IBM Plex Mono, monospace" font-size="16" fill="#A5AEBC">4 meetings</text>
+    <text x="26" y="168" font-family="IBM Plex Mono, monospace" font-size="16" fill="#A5AEBC">133 minutes</text>
 
-    <line x1="256" y1="126" x2="368" y2="126" stroke="#4B5461" stroke-width="2" marker-end="url(#a)"/>
-    <text x="308" y="112" font-family="IBM Plex Mono, monospace" font-size="15" fill="#2B3FBF" text-anchor="middle" font-weight="500">ASR</text>
-    <text x="308" y="152" font-family="IBM Plex Mono, monospace" font-size="14" fill="#858D99" text-anchor="middle">whisper</text>
+    <line x1="256" y1="126" x2="368" y2="126" stroke="#A5AEBC" stroke-width="2" marker-end="url(#a)"/>
+    <text x="308" y="112" font-family="IBM Plex Mono, monospace" font-size="15" fill="#8B99F5" text-anchor="middle" font-weight="500">ASR</text>
+    <text x="308" y="152" font-family="IBM Plex Mono, monospace" font-size="14" fill="#6F7887" text-anchor="middle">whisper</text>
 
-    <rect x="368" y="80" width="230" height="92" rx="4" fill="#FFFFFF" stroke="#D6DBE3" stroke-width="1.5"/>
-    <text x="392" y="118" font-size="19" fill="#14181E">text + second</text>
-    <text x="392" y="147" font-family="IBM Plex Mono, monospace" font-size="15" fill="#858D99">237 chunks</text>
+    <rect x="368" y="80" width="230" height="92" rx="4" fill="#161B23" stroke="#2A3039" stroke-width="1.5"/>
+    <text x="392" y="118" font-size="19" fill="#E9ECF2">text + second</text>
+    <text x="392" y="147" font-family="IBM Plex Mono, monospace" font-size="15" fill="#6F7887">237 chunks</text>
 
     <!-- documents -->
-    <rect x="0" y="206" width="256" height="108" rx="4" fill="#F2F4F7" stroke="#D6DBE3" stroke-width="1.5"/>
-    <text x="26" y="246" font-size="25" font-weight="600" fill="#14181E">Documents</text>
-    <text x="26" y="279" font-family="IBM Plex Mono, monospace" font-size="16" fill="#4B5461">decks, minutes</text>
-    <text x="26" y="302" font-family="IBM Plex Mono, monospace" font-size="16" fill="#4B5461">13 files</text>
+    <rect x="0" y="206" width="256" height="108" rx="4" fill="#1A1F28" stroke="#2A3039" stroke-width="1.5"/>
+    <text x="26" y="246" font-size="25" font-weight="600" fill="#E9ECF2">Documents</text>
+    <text x="26" y="279" font-family="IBM Plex Mono, monospace" font-size="16" fill="#A5AEBC">decks, minutes</text>
+    <text x="26" y="302" font-family="IBM Plex Mono, monospace" font-size="16" fill="#A5AEBC">13 files</text>
 
-    <line x1="256" y1="260" x2="368" y2="260" stroke="#4B5461" stroke-width="2" marker-end="url(#a)"/>
-    <text x="308" y="246" font-family="IBM Plex Mono, monospace" font-size="15" fill="#2B3FBF" text-anchor="middle" font-weight="500">PARSE</text>
-    <text x="308" y="286" font-family="IBM Plex Mono, monospace" font-size="14" fill="#858D99" text-anchor="middle">extract</text>
+    <line x1="256" y1="260" x2="368" y2="260" stroke="#A5AEBC" stroke-width="2" marker-end="url(#a)"/>
+    <text x="308" y="246" font-family="IBM Plex Mono, monospace" font-size="15" fill="#8B99F5" text-anchor="middle" font-weight="500">PARSE</text>
+    <text x="308" y="286" font-family="IBM Plex Mono, monospace" font-size="14" fill="#6F7887" text-anchor="middle">extract</text>
 
-    <rect x="368" y="214" width="230" height="92" rx="4" fill="#FFFFFF" stroke="#D6DBE3" stroke-width="1.5"/>
-    <text x="392" y="252" font-size="19" fill="#14181E">projected text</text>
-    <text x="392" y="281" font-family="IBM Plex Mono, monospace" font-size="15" fill="#858D99">322 lines</text>
+    <rect x="368" y="214" width="230" height="92" rx="4" fill="#161B23" stroke="#2A3039" stroke-width="1.5"/>
+    <text x="392" y="252" font-size="19" fill="#E9ECF2">projected text</text>
+    <text x="392" y="281" font-family="IBM Plex Mono, monospace" font-size="15" fill="#6F7887">322 lines</text>
 
     <!-- video -->
-    <rect x="0" y="340" width="256" height="108" rx="4" fill="#F2F4F7" stroke="#D6DBE3" stroke-width="1.5"/>
-    <text x="26" y="380" font-size="25" font-weight="600" fill="#14181E">Video</text>
-    <text x="26" y="413" font-family="IBM Plex Mono, monospace" font-size="16" fill="#4B5461">whiteboard</text>
-    <text x="26" y="436" font-family="IBM Plex Mono, monospace" font-size="16" fill="#4B5461">15 frames</text>
+    <rect x="0" y="340" width="256" height="108" rx="4" fill="#1A1F28" stroke="#2A3039" stroke-width="1.5"/>
+    <text x="26" y="380" font-size="25" font-weight="600" fill="#E9ECF2">Video</text>
+    <text x="26" y="413" font-family="IBM Plex Mono, monospace" font-size="16" fill="#A5AEBC">whiteboard</text>
+    <text x="26" y="436" font-family="IBM Plex Mono, monospace" font-size="16" fill="#A5AEBC">15 frames</text>
 
-    <line x1="256" y1="394" x2="368" y2="394" stroke="#4B5461" stroke-width="2" marker-end="url(#a)"/>
-    <text x="308" y="380" font-family="IBM Plex Mono, monospace" font-size="15" fill="#2B3FBF" text-anchor="middle" font-weight="500">VLM</text>
-    <text x="308" y="420" font-family="IBM Plex Mono, monospace" font-size="14" fill="#858D99" text-anchor="middle">vision</text>
+    <line x1="256" y1="394" x2="368" y2="394" stroke="#A5AEBC" stroke-width="2" marker-end="url(#a)"/>
+    <text x="308" y="380" font-family="IBM Plex Mono, monospace" font-size="15" fill="#8B99F5" text-anchor="middle" font-weight="500">VLM</text>
+    <text x="308" y="420" font-family="IBM Plex Mono, monospace" font-size="14" fill="#6F7887" text-anchor="middle">vision</text>
 
-    <rect x="368" y="348" width="230" height="92" rx="4" fill="#FFFFFF" stroke="#D6DBE3" stroke-width="1.5"/>
-    <text x="392" y="386" font-size="19" fill="#14181E">description</text>
-    <text x="392" y="415" font-family="IBM Plex Mono, monospace" font-size="15" fill="#858D99">15 timed</text>
+    <rect x="368" y="348" width="230" height="92" rx="4" fill="#161B23" stroke="#2A3039" stroke-width="1.5"/>
+    <text x="392" y="386" font-size="19" fill="#E9ECF2">description</text>
+    <text x="392" y="415" font-family="IBM Plex Mono, monospace" font-size="15" fill="#6F7887">15 timed</text>
 
     <!-- converge -->
-    <g stroke="#4B5461" stroke-width="2" fill="none">
+    <g stroke="#A5AEBC" stroke-width="2" fill="none">
       <path d="M 598 126 L 660 126 L 660 260"/>
       <path d="M 598 394 L 660 394 L 660 260"/>
       <line x1="598" y1="260" x2="660" y2="260"/>
       <line x1="660" y1="260" x2="712" y2="260" marker-end="url(#a)"/>
     </g>
 
-    <rect x="712" y="128" width="216" height="264" rx="4" fill="#E6E9FB" stroke="#2B3FBF" stroke-width="2"/>
-    <text x="820" y="232" font-size="25" font-weight="600" fill="#14181E" text-anchor="middle">One table</text>
-    <text x="820" y="262" font-size="18" fill="#4B5461" text-anchor="middle">all three channels</text>
-    <text x="820" y="298" font-family="IBM Plex Mono, monospace" font-size="16" fill="#2B3FBF" text-anchor="middle">768 dimensions</text>
-    <text x="820" y="322" font-family="IBM Plex Mono, monospace" font-size="16" fill="#2B3FBF" text-anchor="middle">574 chunks</text>
+    <rect x="712" y="128" width="216" height="264" rx="4" fill="#1B2140" stroke="#8B99F5" stroke-width="2"/>
+    <text x="820" y="232" font-size="25" font-weight="600" fill="#E9ECF2" text-anchor="middle">One table</text>
+    <text x="820" y="262" font-size="18" fill="#A5AEBC" text-anchor="middle">all three channels</text>
+    <text x="820" y="298" font-family="IBM Plex Mono, monospace" font-size="16" fill="#8B99F5" text-anchor="middle">768 dimensions</text>
+    <text x="820" y="322" font-family="IBM Plex Mono, monospace" font-size="16" fill="#8B99F5" text-anchor="middle">574 chunks</text>
 
-    <line x1="928" y1="260" x2="1000" y2="260" stroke="#2B3FBF" stroke-width="2" marker-end="url(#b)"/>
-    <text x="964" y="246" font-family="IBM Plex Mono, monospace" font-size="14" fill="#2B3FBF" text-anchor="middle">cosine</text>
+    <line x1="928" y1="260" x2="1000" y2="260" stroke="#8B99F5" stroke-width="2" marker-end="url(#b)"/>
+    <text x="964" y="246" font-family="IBM Plex Mono, monospace" font-size="14" fill="#8B99F5" text-anchor="middle">cosine</text>
 
-    <rect x="1000" y="128" width="456" height="264" rx="4" fill="#FFFFFF" stroke="#2B3FBF" stroke-width="2"/>
-    <text x="1028" y="178" font-size="25" font-weight="600" fill="#14181E">Cited answers</text>
-    <line x1="1028" y1="200" x2="1428" y2="200" stroke="#D6DBE3" stroke-width="1.5"/>
+    <rect x="1000" y="128" width="456" height="264" rx="4" fill="#161B23" stroke="#8B99F5" stroke-width="2"/>
+    <text x="1028" y="178" font-size="25" font-weight="600" fill="#E9ECF2">Cited answers</text>
+    <line x1="1028" y1="200" x2="1428" y2="200" stroke="#2A3039" stroke-width="1.5"/>
 
-    <text x="1028" y="238" font-family="IBM Plex Mono, monospace" font-size="16" fill="#858D99">“what is the production cost?”</text>
+    <text x="1028" y="238" font-family="IBM Plex Mono, monospace" font-size="16" fill="#6F7887">“what is the production cost?”</text>
 
-    <text x="1028" y="284" font-family="IBM Plex Mono, monospace" font-size="16" fill="#14181E">12.50 euro</text>
-    <text x="1028" y="312" font-family="IBM Plex Mono, monospace" font-size="15" fill="#2B3FBF">[SLIDE ES2008a]</text>
-    <text x="1028" y="340" font-family="IBM Plex Mono, monospace" font-size="15" fill="#2B3FBF">[AUDIO ES2008a 00:07:49]</text>
-    <text x="1028" y="370" font-size="17" fill="#4B5461">every claim traceable to a source</text>
+    <text x="1028" y="284" font-family="IBM Plex Mono, monospace" font-size="16" fill="#E9ECF2">12.50 euro</text>
+    <text x="1028" y="312" font-family="IBM Plex Mono, monospace" font-size="15" fill="#8B99F5">[SLIDE ES2008a]</text>
+    <text x="1028" y="340" font-family="IBM Plex Mono, monospace" font-size="15" fill="#8B99F5">[AUDIO ES2008a 00:07:49]</text>
+    <text x="1028" y="370" font-size="17" fill="#A5AEBC">answers name where they came from</text>
   </svg>
 
   <div class="foot">
