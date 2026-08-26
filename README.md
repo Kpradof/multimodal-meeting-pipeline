@@ -9,7 +9,8 @@ It runs locally and free. The demo uses public data, so you can clone it and run
 it without credentials for anything.
 
 Architecture write-up: `docs/architecture.html`
-Slides: `docs/slide-audit.png` (the auditor) and `docs/slide-pipeline.png` (the ingest pipeline)
+Slides: `docs/slide-full.png` (both flows), `docs/slide-audit.png` (the auditor),
+`docs/slide-pipeline.png` (the ingest pipeline)
 
 ---
 

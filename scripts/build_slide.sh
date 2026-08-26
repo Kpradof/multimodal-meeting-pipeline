@@ -1,7 +1,8 @@
 #!/bin/bash
 # Rasterise a slide to PNG for LinkedIn. The HTML is the source; never edit the PNG.
 #
-#   scripts/build_slide.sh audit       the notes auditor  (dark)
+#   scripts/build_slide.sh full        both flows in one image
+#   scripts/build_slide.sh audit       the notes auditor
 #   scripts/build_slide.sh pipeline    the ingest pipeline (light)
 #   scripts/build_slide.sh             both
 set -e
@@ -19,7 +20,8 @@ render() {
 }
 
 case "${1:-all}" in
+  full)     render full 872 ;;
   audit)    render audit 772 ;;
   pipeline) render pipeline 782 ;;
-  *)        render audit 772; render pipeline 782 ;;
+  *)        render full 872; render audit 772; render pipeline 782 ;;
 esac
