@@ -29,7 +29,7 @@ def arrow(claim, rest):
 
 
 POST = "\n\n".join([
- "I've been learning multimodal data pipelines in Snowflake (OCR, ASR, VLM), so I rebuilt it locally to check the kind of notes those tools produce (Granola, Fathom, Gemini) vs the deck that was up on the screen during the meeting. Then I pointed it at notes written by humans:",
+ "I've been learning multimodal data pipelines in Snowflake (OCR, ASR, VLM), so I rebuilt it locally to check the kind of notes those tools produce (Granola, Fathom, Gemini) vs the deck that was up on the screen during the meeting. Then I ran it on notes written by humans:",
 
  "In my case study, notes used as ground truth in research, it flagged one claim out of eleven: the notes said the profit aim was fifteen million euro. The slide reads \"Profit aim: 50 M euro\", and so do the minutes typed up afterwards. The handwritten transcript also reads \"fifteen million\": the error came in through the audio.",
 
