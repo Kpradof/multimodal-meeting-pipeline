@@ -31,25 +31,20 @@ def arrow(claim, rest):
 POST = "\n\n".join([
  "I've been learning multimodal data pipelines in Snowflake (OCR, ASR, VLM), so I rebuilt it locally to check the kind of notes those tools produce (Granola, Fathom, Gemini etc) vs the deck that was up on the screen during the meeting. Then I pointed it at notes written by humans:",
 
- "It flagged one claim out of eleven.",
+ "In my case study, it flagged one claim out of eleven: the notes said the profit aim was fifteen million euro. The slide projected during that meeting reads \"Profit aim: 50 M euro\", and so do the minutes typed up afterwards. The handwritten transcript also reads \"fifteen million\", so the error came in through the audio and rode into the summary.",
 
- "The notes said the profit aim was fifteen million euro. The slide projected during that meeting reads \"Profit aim: 50 M euro\", and so do the minutes typed up afterwards. The hand written transcript of that meeting also reads \"fifteen million\", so the error came in through the audio and rode into the summary.",
+ arrow("Three channels, one table",
+       "audio through Whisper with word-level timestamps, the projected deck parsed straight out of the .ppt, and whiteboard frames described by a vision model. All three embedded with the same model, so a single query ranks them against each other."),
 
- arrow("The tool was not told where to look",
-       "it pulls the checkable claims out of the notes, searches audio, documents and whiteboard frames for each one, and returns supported, contradicted or no evidence. Three consecutive runs returned the same eleven claims and the same single conflict."),
+ arrow("The checker on top",
+       "it pulls the checkable claims out of a set of notes, searches all three channels for each one, and returns supported, contradicted or no evidence. Three consecutive runs returned the same eleven claims and the same single conflict."),
 
- arrow("The machine broke a different number than the human did",
-       "on that same slide, Whisper turned a production cost of 12.50 euro into 1250, and got the profit aim right. The human record did the opposite. Neither error is visible from inside the audio, only against the document."),
+ arrow("Every stage has a Cortex equivalent",
+       "AI_TRANSCRIBE, AI_PARSE_DOCUMENT, AI_EMBED, VECTOR_COSINE_SIMILARITY, AI_COUNT_TOKENS, CORTEX.COMPLETE. The embedding model is the same one Cortex runs, published on HuggingFace, so the vectors are comparable."),
 
- arrow("It is not one meeting",
-       "of the 142 hand annotated summaries in this corpus, twelve state a profit aim. Ten say fifty million. Two say fifteen."),
-
- "The notes are AMI's own, written by trained annotators and used as ground truth in meeting summarization research.",
+ "The notes are AMI's own, used as ground truth in meeting summarization research. Across that corpus twelve summaries state a profit aim: ten say fifty million, two say fifteen.",
 
  bold("Some lessons learned:"),
-
- arrow("A summary is only as right as the channel it was written from",
-       "nothing inside an audio only pipeline can report that it misheard."),
 
  arrow("No evidence is a retrieval result, not a verdict",
        "two claims came back unmatched. That says the search missed them, not that they are false, and it is the part worth reading by hand."),
