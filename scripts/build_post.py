@@ -29,11 +29,11 @@ def arrow(claim, rest):
 
 
 POST = "\n\n".join([
- "I've been learning multimodal data pipelines in Snowflake, so I built something that checks meeting notes against what was actually on the screen. Then I pointed it at notes written by humans:",
+ "I've been learning multimodal data pipelines in Snowflake, where the stack is OCR, ASR and VLM, so I rebuilt it locally and used it to check meeting notes against what was actually on the screen. Then I pointed it at notes written by humans:",
 
  "It flagged one claim out of eleven.",
 
- "The notes said the profit aim was fifteen million euro. The slide projected during that meeting reads \"Profit aim: 50 M euro\", and so do the minutes the project manager typed up afterwards. The hand written transcript of that meeting also reads \"fifteen million\", so the error came in through the audio and rode into the summary.",
+ "The notes said the profit aim was fifteen million euro. The slide projected during that meeting reads \"Profit aim: 50 M euro\", and so do the minutes typed up afterwards. The hand written transcript of that meeting also reads \"fifteen million\", so the error came in through the audio and rode into the summary.",
 
  arrow("The tool was not told where to look",
        "it pulls the checkable claims out of the notes, searches audio, documents and whiteboard frames for each one, and returns supported, contradicted or no evidence. Three consecutive runs returned the same eleven claims and the same single conflict."),
@@ -44,7 +44,7 @@ POST = "\n\n".join([
  arrow("It is not one meeting",
        "of the 142 hand annotated summaries in this corpus, twelve state a profit aim. Ten say fifty million. Two say fifteen."),
 
- "The notes I audited are AMI's own, written by trained annotators and used as ground truth in meeting summarization research. They were published years before this repo.",
+ "The notes are AMI's own, written by trained annotators and used as ground truth in meeting summarization research, years before this repo existed.",
 
  bold("Some lessons learned:"),
 
