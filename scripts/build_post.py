@@ -29,7 +29,7 @@ def arrow(claim, rest):
 
 
 POST = "\n\n".join([
- "I've been learning multimodal data pipelines in Snowflake, where the stack is OCR, ASR and VLM, so I rebuilt it locally and used it to check meeting notes against what was actually on the screen. Then I pointed it at notes written by humans:",
+ "I've been learning multimodal data pipelines in Snowflake (OCR, ASR, VLM), so I rebuilt it locally to check the kind of notes those tools produce (Granola, Fathom, Gemini etc) vs what was actually on the screen. Then I pointed it at notes written by humans:",
 
  "It flagged one claim out of eleven.",
 
@@ -44,7 +44,7 @@ POST = "\n\n".join([
  arrow("It is not one meeting",
        "of the 142 hand annotated summaries in this corpus, twelve state a profit aim. Ten say fifty million. Two say fifteen."),
 
- "The notes are AMI's own, written by trained annotators and used as ground truth in meeting summarization research, years before this repo existed.",
+ "The notes are AMI's own, written by trained annotators and used as ground truth in meeting summarization research.",
 
  bold("Some lessons learned:"),
 
