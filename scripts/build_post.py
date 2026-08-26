@@ -29,7 +29,7 @@ def arrow(claim, rest):
 
 
 POST = "\n\n".join([
- "I've been learning multimodal data pipelines in Snowflake (OCR, ASR, VLM), so I rebuilt it locally to check the kind of notes those tools produce (Granola, Fathom, Gemini etc) vs what was actually on the screen. Then I pointed it at notes written by humans:",
+ "I've been learning multimodal data pipelines in Snowflake (OCR, ASR, VLM), so I rebuilt it locally to check the kind of notes those tools produce (Granola, Fathom, Gemini etc) vs the deck that was up on the screen during the meeting. Then I pointed it at notes written by humans:",
 
  "It flagged one claim out of eleven.",
 
